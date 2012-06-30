@@ -1,0 +1,64 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>net.petronika</groupId>
+		<artifactId>petronika-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../petronika-parent</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.petronika.fcp</groupId>
+	<artifactId>petronika-fcp-dsl</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>petronika-fcp-dsl</name>
+	<url>http://net.petronika.www</url>
+
+	<repositories>
+
+		<repository>
+			<id>pterodactylus</id>
+			<name>pterodactylus.net Maven Repository</name>
+			<url>http://maven.pterodactylus.net</url>
+		</repository>
+
+	</repositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.pterodactylus</groupId>
+			<artifactId>jFCPlib</artifactId>
+			<version>0.1.2.3</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>mysql-connector-java</artifactId>
+					<groupId>mysql</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+
+</project>
