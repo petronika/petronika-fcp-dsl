@@ -5,8 +5,8 @@ import org.junit.runners.Suite
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses([
-	FCPBuilderConnectionTest.class,
-	FCPBuilderOperationsTest.class
+	FcpBuilderConnectionTest.class,
+	FcpBuilderOperationsTest.class
 ])
-class FCPBuilderAllTests {
+class FcpDslAllTests {
 }

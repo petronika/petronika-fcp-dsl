@@ -7,7 +7,7 @@ import static org.junit.Assert.*
 
 import net.pterodactylus.fcp.*
 
-class FCPBuilderOperationsTest {
+class FcpBuilderOperationsTest {
 
 	static final String FREENET_HOST = "localhost"
 	static final int FREENET_PORT = 9481
@@ -20,7 +20,7 @@ class FCPBuilderOperationsTest {
 	static void setUp() {
 		connection = new FcpConnection(FREENET_HOST, FREENET_PORT)
 		connection.connect()
-		new FCPBuilder(connection).communicate {
+		new FcpBuilder(connection).communicate {
 			clientHello(clientName: CLIENT_NAME)
 		}
 	}
@@ -33,7 +33,7 @@ class FCPBuilderOperationsTest {
 
 	@Test
 	void testListPeers() {
-		new FCPBuilder(connection).communicate {
+		new FcpBuilder(connection).communicate {
 			def peers = []
 			listPeers(identifier: "testListPeers") { Peer peer ->
 				assertNotNull peer.identity
@@ -45,7 +45,7 @@ class FCPBuilderOperationsTest {
 
 	@Test
 	void testListPeer() {
-		new FCPBuilder(connection).communicate {
+		new FcpBuilder(connection).communicate {
 			def peers = []
 			listPeers(identifier: "testListPeers") { Peer peer ->
 				peers << peer.identity
@@ -60,7 +60,7 @@ class FCPBuilderOperationsTest {
 
 	@Test
 	void testListPeerNotes() {
-		new FCPBuilder(connection).communicate {
+		new FcpBuilder(connection).communicate {
 			def peers = []
 			listPeers(identifier: "testListPeers") { Peer peer ->
 				if ( !peer.opennet )
@@ -76,7 +76,7 @@ class FCPBuilderOperationsTest {
 
 	@Test(expected = UnknownNodeIdentifierException.class)
 	void testUnknownNodeIdentifier() {
-		new FCPBuilder(connection).communicate {
+		new FcpBuilder(connection).communicate {
 			listPeer(nodeIdentifier: "peer")
 		}
 	}

@@ -5,9 +5,9 @@ import org.slf4j.LoggerFactory
 
 import net.pterodactylus.fcp.*
 
-class FCPBuilder {
+class FcpBuilder {
 
-	private static final Logger logger = LoggerFactory.getLogger(FCPBuilder.class)
+	private static final Logger logger = LoggerFactory.getLogger(FcpBuilder.class)
 
 	static final String DEFAULT_HOST = 'localhost'
 	static final int DEFAULT_PORT = FcpConnection.DEFAULT_PORT
@@ -25,17 +25,17 @@ class FCPBuilder {
 	private UnknownNodeIdentifier unknownNodeIdentifier
 	private CloseConnectionDuplicateClientName closeConnectionDuplicateClientName
 
-	FCPBuilder() {
+	FcpBuilder() {
 	}
 
-	FCPBuilder(String host, int port) {
+	FcpBuilder(String host, int port) {
 		assert host
 		assert port > 0
 		this.host = host
 		this.port = port
 	}
 
-	FCPBuilder(FcpConnection connection) {
+	FcpBuilder(FcpConnection connection) {
 		assert connection
 		this.connection = connection
 	}
@@ -358,7 +358,7 @@ class FCPBuilder {
 		}
 		@Override
 		public void receivedUnknownNodeIdentifier(FcpConnection fcpConnection, UnknownNodeIdentifier unknownNodeIdentifier) {
-			FCPBuilder.this.unknownNodeIdentifier = unknownNodeIdentifier
+			FcpBuilder.this.unknownNodeIdentifier = unknownNodeIdentifier
 			fireReceived(unknownNodeIdentifier)
 		}
 		@Override
@@ -420,13 +420,13 @@ class FCPBuilder {
 		@Override
 		public void receivedProtocolError(FcpConnection fcpConnection, ProtocolError protocolError) {
 			logger.error("Protocol error: " + protocolError.codeDescription)
-			FCPBuilder.this.protocolError = protocolError
+			FcpBuilder.this.protocolError = protocolError
 			fireReceived(protocolError)
 		}
 		@Override
 		public void receivedCloseConnectionDuplicateClientName(FcpConnection fcpConnection, CloseConnectionDuplicateClientName closeConnectionDuplicateClientName) {
 			logger.warn("Received CloseConnectionDuplicateClientName")
-			FCPBuilder.this.closeConnectionDuplicateClientName = closeConnectionDuplicateClientName
+			FcpBuilder.this.closeConnectionDuplicateClientName = closeConnectionDuplicateClientName
 			fireReceived(closeConnectionDuplicateClientName)
 		}
 		@Override

@@ -5,7 +5,7 @@ import static org.junit.Assert.*
 
 import net.pterodactylus.fcp.*
 
-class FCPBuilderConnectionTest {
+class FcpBuilderConnectionTest {
 
 	static final String FREENET_HOST = "localhost"
 	static final int FREENET_PORT = 9481
@@ -14,7 +14,7 @@ class FCPBuilderConnectionTest {
 
 	@Test
 	void testDefault() {
-		new FCPBuilder().communicate {
+		new FcpBuilder().communicate {
 			clientHello(clientName: CLIENT_NAME) { NodeHello nodeHello ->
 				assertNotNull nodeHello.connectionIdentifier
 			}
@@ -23,7 +23,7 @@ class FCPBuilderConnectionTest {
 
 	@Test
 	void testSpecific() {
-		new FCPBuilder(FREENET_HOST, FREENET_PORT).communicate {
+		new FcpBuilder(FREENET_HOST, FREENET_PORT).communicate {
 			clientHello(clientName: CLIENT_NAME) { NodeHello nodeHello ->
 				assertNotNull nodeHello.connectionIdentifier
 			}
@@ -34,7 +34,7 @@ class FCPBuilderConnectionTest {
 	void testExternal() {
 		FcpConnection connection = openConnection()
 		try {
-			new FCPBuilder(connection).communicate {
+			new FcpBuilder(connection).communicate {
 				clientHello(clientName: CLIENT_NAME) { NodeHello nodeHello ->
 					assertNotNull nodeHello.connectionIdentifier
 				}
@@ -47,7 +47,7 @@ class FCPBuilderConnectionTest {
 
 	@Test(expected = ProtocolErrorException.class)
 	void testProtocolError() {
-		new FCPBuilder().communicate {
+		new FcpBuilder().communicate {
 			clientHello(clientName: CLIENT_NAME)
 			clientHello(clientName: CLIENT_NAME)
 		}
@@ -55,7 +55,7 @@ class FCPBuilderConnectionTest {
 
 	@Test(expected = DuplicateClientNameException.class)
 	void testDuplicateClientName() {
-		new FCPBuilder().communicate {
+		new FcpBuilder().communicate {
 			clientHello(clientName: CLIENT_NAME)
 			FcpConnection connection = createConnection()
 			try {
@@ -78,7 +78,7 @@ class FCPBuilderConnectionTest {
 
 	protected static FcpConnection createConnection() {
 		FcpConnection connection = openConnection()
-		new FCPBuilder().communicate {
+		new FcpBuilder().communicate {
 			clientHello(clientName: CLIENT_NAME)
 		}
 		return connection
